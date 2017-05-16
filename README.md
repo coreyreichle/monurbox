@@ -1,5 +1,7 @@
 # monurbox
 Super, Simple, French Monitoring System
+Copyright (c) 2017 by Corey Reichle
+Licensed under the GPL vr 3 or later.
 
 # What This Is (And, it's not really French)
 It is pronounced either "mon-yur box" or "mon your box".  Your choice.  The former sounds kinda French, but it isn't.
