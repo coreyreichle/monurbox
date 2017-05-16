@@ -1,0 +1,30 @@
+#!/bin/bash
+
+export DEBUG=1
+export serv=$1
+
+if [ ! -z $serv ]
+then
+for i in `cat ./hosts/$serv`
+do
+	echo -e -n "$i\t"
+	./checks/$i $serv
+done
+else
+
+echo -e "Check\tHost/Service\tStatus\n"
+for i in `ls ./hosts/`
+	do for x in `cat ./hosts/$i`
+		do 
+			if [ $DEBUG -ne 0 ]
+			then
+				echo -e -n "$x\t"
+				./checks/$x $i
+			else
+				./checks/$x $i > /dev/null
+				echo $?
+			fi
+	 done
+done
+
+fi

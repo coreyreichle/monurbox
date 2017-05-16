@@ -1,0 +1,12 @@
+#!/bin/bash
+export proc=$1
+
+pgrep $proc  > /dev/null
+if [ $? -ne "0" ]
+then 
+ echo -e $proc"\tDOWN"
+ exit 1
+else
+ echo -e $proc"\tGOOD"
+ exit 0
+fi

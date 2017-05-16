@@ -1,0 +1,12 @@
+#!/bin/bash
+export SITE=$1
+
+ssh $SITE "bash -s" < ./plugins/check_proc mis > /dev/null
+if [ $? -ne "0" ]
+then 
+ echo -e $SITE"\tDOWN"
+ exit 1
+else
+ echo -e $SITE"\tGOOD"
+ exit 0
+fi
