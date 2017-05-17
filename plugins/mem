@@ -1,0 +1,12 @@
+#!/bin/bash
+
+export SITE=$1
+
+ALERT=70
+
+awk '/MemFree/{free=$2} /MemTotal/{total=$2} END{print (free*100)/total}' /proc/meminfo | awk '{printf("%d\n",$1 + 0.5)}' | while read freemem; do
+	if [ "$freemem" -lt "$ALERT" ]
+	then
+		exit 1
+	fi
+done

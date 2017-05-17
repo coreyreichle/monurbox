@@ -4,9 +4,7 @@ export SITE=$1
 nmap -p23 $SITE | grep "23/tcp filtered telnet" > /dev/null
 if [ $? -ne "0" ]
 then 
- echo -e $SITE"\tDOWN"
  exit 1
 else
- echo -e $SITE"\tGOOD"
  exit 0
 fi

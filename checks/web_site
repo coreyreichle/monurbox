@@ -4,9 +4,7 @@ export SITE=$1
 wget --quiet -O /dev/null $SITE
 if [ $? -ne "0" ]
 then 
- echo -e $SITE"\tDOWN"
  exit 1
 else
- echo -e $SITE"\tGOOD"
  exit 0
 fi

@@ -1,0 +1,17 @@
+#!/bin/bash
+
+export SITE=$1
+
+ALERT=90
+df -H | grep -vE 'abc:/xyz/pqr | tmpfs |cdrom|Used' | awk '{ print $5 " " $1 }' | while read output; do 
+usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1 ) 
+partition=$(echo $output | awk '{ print $2 }' ) 
+if [ $usep -ge $ALERT ]
+then 
+ echo -e $SITE"\t${partition}>${ALERT}%"
+ exit 1
+else
+ echo -e $SITE"\tGOOD"
+ exit 0
+fi
+done

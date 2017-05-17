@@ -7,23 +7,23 @@ if [ ! -z $serv ]
 then
 for i in `cat ./hosts/$serv`
 do
-	echo -e -n "$i\t"
 	./checks/$i $serv
 done
+
 else
 
-echo -e "Check\tHost/Service\tStatus\n"
+echo -e "\n" >/tmp/report
 for i in `ls ./hosts/`
 	do for x in `cat ./hosts/$i`
 		do 
-			if [ $DEBUG -ne 0 ]
-			then
-				echo -e -n "$x\t"
-				./checks/$x $i
-			else
-				./checks/$x $i > /dev/null
-				echo $?
-			fi
+			./checks/$x $i > /dev/null
+				if [ "$?" -ne 0 ]; then
+					echo "Service $i has failed $x check!"
+					echo "$i,$x,FAILED" >> /tmp/report
+				else
+					echo "Service $i has passed $x check."
+					echo "$i,$x,GOOD" >> /tmp/report
+				fi
 	 done
 done
 
