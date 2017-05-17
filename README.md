@@ -26,6 +26,8 @@ or:
 
 The latter will run (as configured out of the box), a check to see if a webserver is answering with a 200 and telnet is listening (Well, filtered, per nmap) on example.com.  The former will run those checks, as well as check for a mis and a sshd process on 10.0.3.2, username 'ubuntu'.
 
+There is an included index.php file, which will parse the script's output, and display it in a browser.  Rename it as you like.  It's compatible with any web server that can run php.
+
 # To-Do
 * Add a SQL Backend (SQLite, with optional MySQL).
-* Add a web UI, basically a pretty looking version of monurbox's console output.
+* Add a web UI, basically a pretty looking version of monurbox's console output. (Done, sorta)
