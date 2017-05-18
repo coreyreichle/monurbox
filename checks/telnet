@@ -1,7 +1,7 @@
 #!/bin/bash
 export SITE=$1
 
-nmap -p23 $SITE | grep "23/tcp filtered telnet" > /dev/null
+timeout 2 bash -c "</dev/tcp/${SITE}/23" > /dev/null
 if [ $? -ne "0" ]
 then 
  exit 1
