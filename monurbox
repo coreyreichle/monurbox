@@ -13,18 +13,21 @@ done
 else
 
 echo -e "\n" >/tmp/report
+echo -e "Host\tService\tStatus"
 for i in `ls ./hosts/`
 	do for x in `cat ./hosts/$i`
 		do 
 			./checks/$x $i > /dev/null
 				if [ "$?" -ne 0 ]; then
-					echo "Service $i has failed $x check!"
+					echo -e "$i\t$x\tFAILED"
 					echo "$i,$x,FAILED" >> /tmp/report
 				else
-					echo "Service $i has passed $x check."
+					echo -e "$i\t$x\tGOOD"
 					echo "$i,$x,GOOD" >> /tmp/report
 				fi
 	 done
 done
 
-fi
+fi | column -t
+
+sed -i '/^\s*$/d' /tmp/report

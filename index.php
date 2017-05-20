@@ -1,7 +1,11 @@
 <?php
 echo "<html>\n<meta http-equiv='refresh' content='300'>\n<title>Monitoring Report</title>\n<body>\n<table width='400'>\n<tr align='left'><th>Host</th><th>Service</th><th>Status</th></tr>\n";
 
-$hosts = $_GET["hosts"];
+$hosts="";
+
+if (isset($_GET['hosts'])) {
+	$hosts = $_GET["hosts"];
+}
 if ( $hosts !="all" ) { $hosts = "failed"; }
 
 $f = fopen("/tmp/report", "r");
